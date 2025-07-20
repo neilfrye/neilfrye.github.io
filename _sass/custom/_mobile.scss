@@ -1,0 +1,195 @@
+/* ==========================================================================
+   RESPONSIVE STYLES FOR MOBILE, TABLET, AND SMALLER LAPTOPS
+   ========================================================================== */
+
+/* Common styles for both mobile and tablet views */
+.greedy-nav {
+  /* Mobile menu toggle button transitions */
+  .mobile-menu-toggle {
+    transition: all 0.3s ease;
+    
+    .menu-icon__line {
+      transition: all 0.3s ease;
+    }
+  }
+  
+  /* Mobile navigation overlay transitions */
+  .mobile-nav-overlay {
+    transition: visibility 0.3s ease, opacity 0.3s ease;
+    
+    .mobile-nav-links {
+      .mobile-nav-item {
+        a {
+          transition: all 0.2s ease;
+        }
+      }
+    }
+  }
+}
+
+/* Tablet styles (601px - 900px) */
+@media (min-width: 601px) and (max-width: 900px) {
+  .tablet-view {
+    .masthead {
+      &__inner-wrap {
+        padding: 0 1.25em;
+      }
+    }
+    
+    .greedy-nav {
+      .site-title {
+        .site-logo {
+          font-size: 1.1em;
+        }
+      }
+      
+      .mobile-menu-toggle {
+        padding: 0.75rem;
+      }
+      
+      .mobile-nav-overlay {
+        .mobile-nav-container {
+          max-width: 400px;
+          margin: 0 auto;
+          padding: 2rem;
+        }
+        
+        .mobile-nav-links {
+          .mobile-nav-item {
+            margin-bottom: 1.25rem;
+            
+            a {
+              padding: 1rem 1.5rem;
+              border-radius: 8px;
+              font-size: 1.1em;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Mobile styles (up to 600px) */
+@media (max-width: 600px) {
+  .mobile-view {
+    /* Masthead adjustments */
+    .masthead {
+      &__inner-wrap {
+        padding: 0 1rem;
+      }
+    }
+    
+    /* Site title/logo */
+    .greedy-nav {
+      .site-title {
+        .site-logo {
+          font-size: 1em;
+          margin-right: 0;
+        }
+      }
+      
+      /* Mobile menu toggle button */
+      .mobile-menu-toggle {
+        padding: 0.75rem;
+        
+        .menu-icon {
+          width: 22px;
+          height: 16px;
+        }
+      }
+      
+      /* Mobile navigation overlay */
+      .mobile-nav-overlay {
+        .mobile-nav-container {
+          padding: 1.5rem 1rem;
+        }
+        
+        .mobile-nav-links {
+          .mobile-nav-item {
+            margin-bottom: 0.75rem;
+            
+            a {
+              padding: 1rem;
+              border-radius: 8px;
+              font-size: 1.1em;
+              font-weight: 500;
+              display: flex;
+              align-items: center;
+              
+              /* Add subtle visual indicator for each menu item */
+              &::before {
+                content: '';
+                display: block;
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background-color: var(--global-link-color);
+                margin-right: 0.75rem;
+                opacity: 0.7;
+              }
+            }
+            
+            &.active a {
+              background-color: rgba(0, 0, 0, 0.03);
+              
+              &::before {
+                opacity: 1;
+                width: 8px;
+                height: 8px;
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    /* Adjust page content for mobile */
+    .page__content {
+      h2 {
+        margin-top: 1.5em;
+        font-size: 1.5em;
+      }
+      
+      h3 {
+        font-size: 1.25em;
+      }
+      
+      p, li {
+        font-size: 0.95em;
+      }
+    }
+  }
+}
+
+/* Fix for iOS Safari overscroll behavior */
+html {
+  position: relative;
+  overflow-x: hidden;
+  height: 100%;
+  
+  @media (max-width: 900px) {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Improve touch interactions */
+@media (max-width: 900px) {
+  a, button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Add subtle shadow to the masthead on scroll */
+.masthead {
+  transition: box-shadow 0.3s ease;
+  
+  &.is-scrolled {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+}

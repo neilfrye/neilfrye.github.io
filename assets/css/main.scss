@@ -1,0 +1,371 @@
+@import "theme/_default";
+
+/*!
+  main.scss
+  ------------------------------------------------------------
+  This file imports the SASS partials from _sass/ and includes
+  our overrides for a more modern, Apple.com-like styling.
+*/
+
+/* 1. Load default theme variables and global partials */
+
+// Load the default theme settings first
+// Utility mixins and shared partials
+@import "include/mixins";
+@import "include/utilities";
+@import "vendor/breakpoint/breakpoint";
+@import "vendor/font-awesome/fontawesome";  /* Font Awesome core */
+@import "_themes";
+@import "vendor/font-awesome/solid";        /* Solid icons */
+@import "vendor/font-awesome/regular";      /* Regular icons */
+@import "vendor/font-awesome/brands";       /* Brand icons */
+
+/* 2. Load the layout partials (reset, typography, base, etc.) */
+
+@import "layout/reset";
+@import "layout/base";
+@import "layout/typography";
+@import "layout/navigation";
+@import "layout/masthead";
+@import "layout/archive";
+@import "layout/page";
+@import "layout/sidebar";
+@import "layout/buttons";
+@import "layout/forms";
+@import "layout/footer";
+@import "layout/notices";
+@import "layout/tables";
+
+/* 3. Optional: syntax highlighting and theme partials */
+
+@import "syntax";
+@import "theme/dark";       /* If you want to provide a dark theme or references */
+@import "theme/default";    /* We load default again to ensure final variables */
+@import "custom/_mobile";   /* Mobile-specific styles */
+@import "custom/_mobile_menu";   /* Mobile menu styles */
+@import "custom/_responsive_nav";   /* Responsive navigation styles */
+
+/* 4. OVERRIDES: style changes to modernize the look (Apple-inspired) */
+
+/* Example "apple-like" design adjustments.
+   Adjust or remove to taste. */
+
+body {
+  /* Switch to a thinner, cleaner font for that “apple feel”.
+     Alternatively, you can use the system font stack. */
+  font-family: -apple-system, BlinkMacSystemFont, 
+               "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
+
+  /* A subtle near-white background so it’s not pure #fff */
+  background-color: #f8f8f8;
+  color: #333;
+}
+
+/* Masthead: bigger, cleaner, pinned with minimal lines */
+.masthead {
+  position: fixed;
+  min-height: auto;
+  height: $masthead-height;
+  background: var(--global-bg-color);
+  border-bottom: 1px solid var(--global-border-color);
+  z-index: 20;
+
+  &__inner-wrap {
+    /* Increase top & bottom padding for an airy feel */
+    padding: 1em 1em;
+  }
+
+  a {
+    color: #555;  /* Dark gray text for links up top */
+    font-weight: 400;
+    &:hover {
+      color: #000;  /* On hover, black */
+    }
+  }
+}
+
+/* Menu items spacing & hover style */
+.masthead__menu-item {
+  margin: 0;
+  &--lg {
+    padding-right: 2em;
+    font-weight: 600;
+  }
+}
+
+/* Buttons: Apple-like (blue, slightly rounded, subtle shadow) */
+.btn {
+  background-color: #007aff; /* Apple system blue */
+  border-radius: 6px;
+  border: none;
+  color: #fff !important;
+  padding: 0.6em 1.2em;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  &:hover {
+    background-color: #005bb5;
+  }
+}
+
+/* Titles, headings—more subtle weight, a bit larger */
+h1, h2, h3, h4, h5, h6 {
+  font-family: -apple-system, BlinkMacSystemFont, 
+               "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
+  font-weight: 600;
+}
+
+/* Increase the hero image size & presence (when overlay is used) */
+.page__hero--overlay {
+  min-height: 20vh !important;
+  padding: 2em 0;
+  h1.page__title {
+    font-size: 2.2em;
+  }
+  .page__lead {
+    font-size: 1.25em;
+    max-width: 40em;
+  }
+}
+
+/* Page main container (wider, more space) */
+#main {
+  max-width: 1200px;
+  margin-top: 3em;  /* Move content a bit further from top nav */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Sidebar: remove border, adjust headings, lightly gray text for meta info */
+.sidebar {
+  border-right: none;
+  h3, h4 {
+    color: #444;
+    font-weight: 600;
+  }
+  p, li {
+    color: #777;
+  }
+}
+
+/* Footer, pinned at bottom with subtle color */
+.page__footer {
+  background: #fafafa;
+  border-top: 1px solid #e2e2e2;
+  footer {
+    padding-top: 1em;
+  }
+}
+
+/* Example of a custom “callout” or “notice” style override */
+.notice {
+  background-color: #eef4ff;  /* Light, bluish background */
+  border-left: 4px solid #007aff;
+  h4 {
+    color: #007aff;
+    margin-top: 0;
+  }
+  a {
+    color: #005bb5;
+    font-weight: 500;
+    text-decoration: underline;
+  }
+}
+
+/* Make tables a bit more spaced out */
+table {
+  font-size: 0.95em;
+  td, th {
+    padding: 0.75em 1em;
+  }
+  thead {
+    background-color: #f2f2f2;
+  }
+}
+
+/* Hero Section */
+.hero-short {
+  min-height: 25vh;
+  background:
+    linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)),
+    url("/images/backdrop.webp") center center / cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+  padding: 2rem 0;
+  margin-bottom: 2rem;
+}
+
+.hero-short .hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.hero-short .hero-content {
+  padding: 1rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+}
+
+/* Two Column Layout */
+.content-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin: 2rem auto;
+  max-width: 1200px;
+  padding: 0 1rem;
+}
+
+.main-left {
+  flex: 1 1 60%;
+  min-width: 300px;
+}
+
+.endorsements-column {
+  flex: 1 1 35%;
+  min-width: 280px;
+}
+
+.endorsements__carousel {
+  background: #f9f9f9;
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.endorsement {
+  margin-bottom: 1.5rem;
+  blockquote {
+    font-style: italic;
+    margin: 0 0 0.5rem 0;
+  }
+  .endorsement__author {
+    text-align: right;
+    font-size: 0.9em;
+    color: #555;
+  }
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+  .content-row {
+    flex-direction: column;
+  }
+  .main-left, .endorsements-column {
+    flex: auto;
+    width: 100%;
+    min-width: auto;
+  }
+}
+
+/* Slick Carousel Styles */
+.slick-slider {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  user-select: none;
+  touch-action: pan-y;
+}
+
+.slick-list {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.slick-track {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: flex;
+}
+
+.slick-slide {
+  height: auto;
+  min-height: 1px;
+  padding: 0 15px;
+}
+
+.slick-dots {
+  position: absolute;
+  bottom: -25px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  
+  li {
+    margin: 0 5px;
+    
+    button {
+      font-size: 0;
+      line-height: 0;
+      display: block;
+      width: 10px;
+      height: 10px;
+      padding: 5px;
+      border-radius: 50%;
+      background: #ccc;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    
+    &.slick-active button {
+      background: #007aff;
+    }
+  }
+}
+
+.slick-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 1);
+  }
+  
+  &::before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    color: #333;
+    font-size: 20px;
+  }
+}
+
+.slick-prev {
+  left: -50px;
+  
+  &::before {
+    content: '\f104';
+  }
+}
+
+.slick-next {
+  right: -50px;
+  
+  &::before {
+    content: '\f105';
+  }
+}
+
+/* That’s it! Everything else is inherited from partials above */

@@ -1,0 +1,12 @@
+main:
+  - title: "About"
+    url: /
+  - title: "Resume"
+    url: /assets/resume.pdf
+    external: true
+  - title: "Projects"
+    url: /projects/
+  - title: "Articles"
+    url: /articles/
+  - title: "Blog Posts"
+    url: /year-archive/
